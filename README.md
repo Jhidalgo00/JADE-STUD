@@ -1,61 +1,88 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# 🧑‍🎓 Student-Section Management System (Laravel MVC CRUD)
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+## 📘 Description / Overview
+The **Student-Section Management System** is a web-based CRUD (Create, Read, Update, Delete) application developed using the **Laravel Framework**.  
+It allows users to manage student and section records efficiently by performing basic database operations through a user-friendly interface.  
+This project was created as part of the **Midterm Examination** to demonstrate understanding of **Laravel MVC architecture**, **database management**, and **web development fundamentals**.
 
-## About Laravel
+---
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## 🎯 Objectives
+- To apply the **Model-View-Controller (MVC)** architecture in building a web application.
+- To perform CRUD operations (Create, Read, Update, Delete) using Laravel.
+- To implement database migrations and relationships between students and sections.
+- To demonstrate proper routing, validation, and controller logic.
+- To enhance understanding of Laravel Blade templates for dynamic web pages.
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+---
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+## ⚙️ Features / Functionality
+✅ **Student Management**
+- Add new student records.  
+- View list of all students.  
+- Edit and update existing student information.  
+- Delete unwanted student entries.
 
-## Learning Laravel
+✅ **Section Management**
+- Add, edit, and delete sections.  
+- Assign students to specific sections.  
+- Display section details and the list of enrolled students.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
+✅ **Additional Features**
+- User-friendly interface using Blade templates.  
+- Validation for required form inputs.  
+- Flash messages for success and error notifications.
 
-You may also try the [Laravel Bootcamp](https://bootcamp.laravel.com), where you will be guided through building a modern Laravel application from scratch.
+---
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+## 🛠️ Installation Instructions
 
-## Laravel Sponsors
+### 1️⃣ Clone the Repository
+```bash
+git clone https://github.com/Jhigaldo00/student-section-crud.git
+cd student-section-crud
+2. composer install
+npm install
+3.cp .env.example .env
+4.DB_DATABASE=student_section_db
+DB_USERNAME=root
+DB_PASSWORD=
+5. php artisan serve
+access the app at https://127.0.0.1/student
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
 
-### Premium Partners
+💻 Usage
+For Students:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+1. Click on Students tab.
+2. Add a new student by filling up the form.
+3.Edit or delete student records when needed.
+For Sections:
+1.Go to the Sections page.
+2.Add or update section details.
+3. Assign students to a section.
 
-## Contributing
+Screeshot for Code Snippet
+// StudentController.php
+public function store(Request $request)
+{
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'section_id' => 'required|exists:sections,id',
+    ]);
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+    Student::create($validated);
 
-## Code of Conduct
+    return redirect()->route('students.index')->with('success', 'Student added successfully!');
+}
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+👥 Contributors
 
-## Security Vulnerabilities
+Name: Jade Hidalgo    
+Course: [BSIT 4-C]
+Collaborators: Marivic Floresca
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+📜 License
+This project is licensed under the MIT License — you are free to use, modify, and distribute this project with attribution.
 
-## License
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
